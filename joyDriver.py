@@ -7,6 +7,7 @@ from serial import Serial
 # Define constants
 SERIAL_BUFF_SIZE = 98
 ANALOG_ON = "1"
+DIGITAL_ON = "1"
 JOY_CENT_OUT = int(32768/2)
 
 # Setup virtual joystick device using pyvjoy
@@ -195,5 +196,37 @@ while True:
     else:
         j.set_axis(pyvjoy.HID_USAGE_RZ, JOY_CENT_OUT)
 
+    # -------------------------------
+    # Buttons
+    # -------------------------------
+    if data[80] == DIGITAL_ON:
+        j.set_button(1,1)
+    else:
+        j.set_button(1,0)
+
+    if data[77] == DIGITAL_ON:
+        j.set_button(2,1)
+    else:
+        j.set_button(2,0)
+
+    if data[73] == DIGITAL_ON:
+        j.set_button(3,1)
+    else:
+        j.set_button(3,0)
+
+    if data[75] == DIGITAL_ON:
+        j.set_button(4,1)
+    else:
+        j.set_button(4,0)
+
+    if data[68] == DIGITAL_ON:
+        j.set_button(5,1)
+    else:
+        j.set_button(5,0)
+    
+    if data[69] == DIGITAL_ON:
+        j.set_button(6,1)
+    else:
+        j.set_button(6,0)
 
 
